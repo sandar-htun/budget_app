@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Daily Usage App</title>
+    </head>
+    <body>
+        <main style="background-color:whitesmoke ; height: 100%;">
+         <header style="background-color: whitesmoke; padding: 8px;overflow: auto;">
+          <strong style="display: block; font-size: 24px;">Logo Here</strong>
+          <section style="float: left;width:50%;">
+              <img src="./assets/images/3.jpg" width="100" height="100" style="float:left;margin-right: 10px;"/>
+                <div style="float:left;">
+                    <h3>John Doe</h3>
+                    <button style="padding: 4px;background:greenyellow; cursor:pointer;" onClick="showForm()">ADD EXPENSE</button>
+                    <button style="padding: 4px;background: greenyellow; cursor:pointer;" onClick="showExpense()">SHOW EXPENSE</button>
+                     
+                </div>
+          </section>
+          <section style="float: right;width:50%;">
+            <div style="float: right;text-align:right;">
+               <h3>Total Budget</h3>
+               <h2 class="budget">100000 KS</h2>
+               <p class="budget">4 KS just for testing</p> 
+            </div>
+          </section>   
+         </header>
+         <hr/>
+         
+         <div style="text-align:center; float: right;width: 50%;">
+            <h4 style="text-align:center;"></h4>
+            <strong id="expenseTitle"></strong>
+            <strong id="expenseAmount"></strong>
+         </div>
+         <div style="float:left;width:50%;display: none;" id="expenseScreen">
+             <h2>Your Expenses</h2>
+             <table border="1" id="expenseTable" style="width:100%">
+                <tr>
+                    <th>Title</th>
+                    <th>Amount</th>
+                </tr>
+             </table>
+         </div>
+        </main>
+    </body>
+</html>
+<script>
+    // function expression
+    function showForm() {
+        let expenseTitle= window.prompt('Please Enter Expense Title');
+        let expenseAmount= window.prompt('Please Enter Your New Expense');
+        //isNaN is not a number => return true/false
+        if (isNaN(expenseAmount)) {
+           window.alert("Invalid")
+            return;
+        }
+        let totalBudget = document.getElementsByClassName('budget');
+        totalBudget[0].innerHTML = parseInt(totalBudget[0].innerHTML.replace(' KS', ''))-parseInt(expenseAmount) + ' KS'
+        // getElementsByTabName return array of selected tag name element
+        let resultElements = document.getElementsByTagName('h4');
+        resultElements[0].innerHTML = 'Your new expense';
+        document.getElementById('expenseTitle').innerHTML = expenseTitle + ':'
+        document.getElementById('expenseAmount').innerHTML = expenseAmount
+        let newExpense = {
+            'title':expenseTitle,
+            'amount':expenseAmount
+        }
+        let totalExpenses = [];
+        if(window.localStorage.getItem('expenses')) {
+            totalExpenses = JSON.parse(window.localStorage.getItem('expenses'))
+        }
+        totalExpenses.push(newExpense)
+        window.localStorage.setItem('expenses',JSON.stringify(totalExpenses));
+        appendExpenses(totalExpenses[i]);
+    
+    }
+    function showExpense() {
+        let expenseScreen = document.getElementById('expenseScreen')
+        expenseScreen.style.display = 'block'
+        let expenseList = document.getElementById('expenseList')
+        let totalResults = localStorage.getItem('expenses')
+        expenseList.innerHTML = totalResults
+    }
+    function initiateExpenses(){
+        let totalExpenses=JSON.parse(localStorage.getItem('expenses'))||[];
+    }
+</script>

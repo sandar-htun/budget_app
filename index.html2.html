@@ -1,0 +1,55 @@
+
+<html>
+    <head>
+        <title>Budget</title>
+        <body>
+            <main style="background-color: whitesmoke;overflow:auto;padding:8px;">
+              <header style="background-color: whitesmoke;font-size: 23px;">Logo Here
+                <div style="background-color: blueviolet;width: 50%;float: left; ">
+                    <img src="./assets/images/3.jpg" alt="profile" width="100px" height="100px" style="float: left;"/>
+                    <h3 style="float:left ;">John Doe</h3>
+                    <button style="padding:4px;background-color:pink;onClick="showForm()"cursor: pointer;">ADD EXPRENSE</button>
+                    <button style="padding:4px;background-color:pink;onClick="showExpense()"cursor: pointer;">SHOW EXPRENSE</button>
+                </div>
+                <div style="background-color: green; width:50%;float: right; text-align: right; ">
+                    <h3>Totle Budget</h3>
+                    <h2 class="budget" >10000 KS</h2>
+                    <p class="budget">4 KS just for testing</p>
+                </div>
+              </header>
+              <hr/>
+               <h4 style="text-align:center;"></h4>
+               <div style="text-align:center">
+                  <strong id="expenseTitle"></strong>
+                  <strong id="expenseAmount"></strong>
+              </div>
+              <div style="float: left;width: 50%;display: none;"id="expenseScreen">
+               <h3>All Expense</h3>
+               <p id="expenseList"></p>
+             </div>
+            </main>
+        </body>
+    </head>
+</html>
+<script>
+ // function expression
+ function showExpense() {
+     let expenseTitle=window.prompt 'Please Enter Your Expense';
+     let expenseAmount=window.prompt 'Please Enter Your Expense Amount';
+     if isNaN(expenseAmount) {
+         window alert.("Invaild")
+         return;
+
+     }
+     let totalBudget= document.getElementByClassName('budget');
+     totalBudget[0].innerHTML=parseInt (totalBudget[0].innerHTML-replace(' KS', '') )-parseInt(expenseAmount) + ' KS'
+      // getElementsByTabName return array of selected tag name element
+
+
+ }
+
+
+
+
+
+</script>
